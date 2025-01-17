@@ -1,6 +1,9 @@
   /*
-
-    Setting up BLMT ICEBERG Tables
+  Setting up BLMT ICEBERG Tables
+  
+  Project Set up: 
+      Project : nishitkamdar-47-20241211121223
+      Dataset : taxidataset -> routines -> sp_demo_biglake_managed_tables
 
   Use Cases: 
       - For when customers want to have full control of their BigLake tables and want support for full CRUD operations
