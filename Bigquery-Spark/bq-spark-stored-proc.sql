@@ -1,3 +1,5 @@
+
+
 CREATE OR REPLACE PROCEDURE
 	`nishitkamdar-47-20241211121223.taxi_dataset.sp_demo_bigspark_read_csv_load_bq_table`(test_parameter STRING)
 WITH CONNECTION `nishitkamdar-47-20241211121223.us.spark-connection` OPTIONS (engine='SPARK',
@@ -5,6 +7,8 @@ WITH CONNECTION `nishitkamdar-47-20241211121223.us.spark-connection` OPTIONS (en
 		properties=[],
 		jar_uris=["gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.26.0.jar"])
 	LANGUAGE python AS R"""
+
+
 ####################################################################################
 # Copyright 2024 Google LLC
 #
