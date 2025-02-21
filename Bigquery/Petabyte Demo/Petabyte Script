@@ -1,2 +1,5 @@
 /* Petabyte script */
 
+SELECT * 
+  FROM `google.com:bigquery-petabyte.retail_petabyte.sales_partitioned_clustered`
+WHERE customerKey = "1440806400000-262"
