@@ -1,4 +1,7 @@
-
+# This code creates a Bigquery Spark Stored Procedure in the Project : nishitkamdar-47-20241211121223
+# Run this code to create the stored procedure
+# The Stored proc will be available in the routine list of the taxi dataset
+# use call 'taxi_dataset.sp_demo_bigspark_read_csv_load_bq_table' to run the stored proc
 
 CREATE OR REPLACE PROCEDURE
 	`nishitkamdar-47-20241211121223.taxi_dataset.sp_demo_bigspark_read_csv_load_bq_table`(test_parameter STRING)
