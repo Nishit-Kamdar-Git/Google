@@ -1,0 +1,29 @@
+description: Run TPC benchmark on Serverless Standard
+environmentConfig:
+  executionConfig:
+    idleTtl: 28800s
+    serviceAccount: sparkpoc-sa@nishitkamdarargo.iam.gserviceaccount.com
+    subnetworkUri: sparkpoc-subnet
+    ttl: 86400s
+jupyterSession:
+  displayName: Standard for running TPC Benchmark
+  kernel: PYTHON
+labels:
+  client: bigquery-jupyter-plugin
+runtimeConfig:
+  properties:
+    spark.dataproc.driver.compute.tier: standard
+    spark.dataproc.driver.disk.size: 750g
+    spark.dataproc.driver.disk.tier: standard
+    spark.dataproc.executor.compute.tier: standard
+    spark.dataproc.executor.disk.size: 750g
+    spark.dataproc.executor.disk.tier: standard
+    spark.driver.cores: '16'
+    spark.driver.memory: 58g
+    spark.dynamicAllocation.enabled: 'false'
+    spark.executor.cores: '16'
+    spark.executor.instances: '9'
+    spark.executor.memory: 58g
+    spark.gluten.sql.columnar.backend.velox.glogSeverityLevel: '2'
+    spark.log.level: ERROR
+  version: '2.2'
