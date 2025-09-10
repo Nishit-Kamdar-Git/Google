@@ -1,0 +1,36 @@
+-- 1. Configuration: Variables for source and destination.
+DECLARE target_dataset_name STRING DEFAULT 'Cymbal_CPG';
+DECLARE source_bucket_name STRING DEFAULT 'data-analytics-golden-demo';
+DECLARE source_base_folder STRING DEFAULT 'cymbal-cpg';
+DECLARE source_file_prefix STRING DEFAULT 'Demo_Cymbal_CPG_';
+
+-- Array of all table names you want to load
+DECLARE table_list ARRAY<STRING> DEFAULT [
+  'CPG_customers',
+  'CPG_sales',
+  'CPG_sales_items',
+  'CPG_products',
+  'CPG_invoices',
+  'CPG_invoices_final'
+];
+
+-- 2. Loop through each table name in the list
+FOR table_row IN (SELECT t_name FROM UNNEST(table_list) AS t_name)
+DO
+
+  -- 3. Dynamically build and run a LOAD DATA command for each table
+  EXECUTE IMMEDIATE FORMAT(
+    'LOAD DATA OVERWRITE `%s.%s.%s` FROM FILES (format = "PARQUET", uris = ["%s"])',
+    @@project_id,
+    target_dataset_name,
+    table_row.t_name,
+    -- MODIFIED: Re-added the wildcard (*) to the filename pattern for robustness.
+    'gs://' || source_bucket_name || '/' || source_base_folder || '/' || table_row.t_name || '/' || source_file_prefix || table_row.t_name || '*.parquet'
+  );
+
+  -- Log a message to the results tab for tracking progress
+  SELECT FORMAT("✅ Load job submitted for table: %s.%s.%s",
+    @@project_id, target_dataset_name, table_row.t_name) AS status;
+
+END FOR;
+
